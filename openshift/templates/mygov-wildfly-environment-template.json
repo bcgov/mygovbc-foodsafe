@@ -36,7 +36,7 @@
               "from": {
                 "kind": "ImageStreamTag",
                 "namespace": "openshift",
-                "name": "mysql:5.6"
+                "name": "mysql:5.7"
               }
             }
           },
@@ -85,13 +85,17 @@
                     "value": "${DATABASE_PASSWORD}"
                   },
                   {
+                    "name": "MYSQL_ROOT_PASSWORD",
+                    "value": "${DATABASE_ROOT_PASSWORD}"
+                  },
+                  {
                     "name": "MYSQL_DATABASE",
                     "value": "${DATABASE_NAME}"
                   }
                 ],
                 "resources": {
                   "limits": {
-                    "memory": "512Mi"
+                    "memory": "1Gi"
                   }
                 },
                 "volumeMounts": [
@@ -227,6 +231,10 @@
                   {
                     "name": "MYSQL_PASSWORD",
                     "value": "${DATABASE_PASSWORD}"
+                  },
+                  {
+                    "name": "MYSQL_ROOT_PASSWORD",
+                    "value": "${DATABASE_ROOT_PASSWORD}"
                   },
                   {
                     "name": "JAVA_OPTS",
@@ -450,7 +458,7 @@
       "name": "APPLICATION_DOMAIN",
       "displayName": "Application Hostname",
       "description": "The exposed hostname that will route to the MyGovBC service, if left blank a value will be defaulted.",
-      "value": "mygovbc-dev.pathfinder.bcgov"
+      "value": "mygovbc-dev.apps.silver.devops.gov.bc.ca"
     },
     {
       "name": "DATABASE_SERVICE_NAME",
@@ -472,6 +480,13 @@
       "from": "[a-zA-Z0-9]{16}"
     },
     {
+      "name": "DATABASE_ROOT_PASSWORD",
+      "displayName": "MySQL Root Password",
+      "description": "Password for the MySQL root user.",
+      "generate": "expression",
+      "from": "[a-zA-Z0-9]{16}"
+    },
+    {
       "name": "DATABASE_NAME",
       "displayName": "Database Name",
       "value": "personalized_srvc"
@@ -480,7 +495,7 @@
       "name": "DATABASE_VOLUME_CAPACITY",
       "displayName": "Database Volume Capacity",
       "description": "Volume space available for MySQL database, e.g. 512Mi, 2Gi.",
-      "value": "1Gi",
+      "value": "2Gi",
       "required": true
     },
     {
@@ -494,7 +509,7 @@
       "name": "APP_IMAGE_NAMESPACE",
       "displayName": "Namespace containing application images.",
       "description": "Namespace containing application images.",
-      "value": "gcpe-mygovbc-tools",
+      "value": "0d0eec-tools",
       "required": true
     },
     {

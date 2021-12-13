@@ -1,5 +1,7 @@
 # mygovbc
 
+[![Lifecycle:Retired](https://img.shields.io/badge/Lifecycle-Retired-d45500)](<Redirect-URL>)
+
 The structure of this repository is compatible with the build and deployment mechanisms in Red Hat OpenShift (Origin/Enterprise/Container Platform).  
 
 ## Pre-requisites
